@@ -1,0 +1,125 @@
+/* Zajištění, že stránka nemá žádné posuvníky */
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	/* Skrytí posuvníků */
+}
+
+/* Styly pro obsah stránky */
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #87CEEB;
+	/* Nastavení oblohové barvy */
+	font-family: Arial, sans-serif;
+	position: relative;
+	/* Umožní pozicování textů na pozadí */
+}
+
+/* Kontejner pro texty a obrázek */
+.container {
+	text-align: center;
+	position: relative;
+	/* Umožní pozicování textů na pozadí */
+	z-index: 1;
+	/* Zajistíme, že texty na pozadí nebudou překrývat obsah */
+}
+
+/* Zmenšení obrázku na 50% šířky obrazovky */
+.image {
+	width: 50vw;
+	height: auto;
+	opacity: 0;
+	animation: fadeIn 2s forwards;
+}
+
+/* Styly pro texty */
+.text,
+.text2 {
+	font-size: 36px;
+	opacity: 0;
+	transition: opacity 2s ease-in;
+}
+
+/* Animace pro zobrazení obrázku */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+/* Zajištění plynulého pohybu textů na pozadí */
+.floating-text {
+	position: absolute;
+	font-size: 24px;
+	color: rgba(0, 0, 0, 0.3);
+	white-space: nowrap;
+	opacity: 0;
+	animation: floatText 15s infinite linear;
+	/* Pomalejší pohyb */
+}
+
+/* Animace pro pohyb textu zprava doleva */
+@keyframes floatText {
+	0% {
+		transform: translateX(100vw);
+		/* Začínáme mimo obrazovku zprava */
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		transform: translateX(-100vw);
+		/* Text zmizí, když se dostane na levou stranu */
+		opacity: 0;
+	}
+}
+
+/* Přidání různých zpoždění pro texty na pozadí */
+.floating-text:nth-child(1) {
+	animation-delay: 0s;
+}
+
+.floating-text:nth-child(2) {
+	animation-delay: 3s;
+	/* Začíná později */
+}
+
+.floating-text:nth-child(3) {
+	animation-delay: 6s;
+	/* Začíná později */
+}
+
+.floating-text:nth-child(4) {
+	animation-delay: 9s;
+	/* Začíná později */
+}
+
+.floating-text:nth-child(5) {
+	animation-delay: 12s;
+	/* Začíná později */
+}
+
+/* Responzivní styl pro mobilní zařízení */
+@media (max-width: 600px) {
+	.image {
+		width: 80%;
+		max-width: 400px;
+	}
+
+	.text,
+	.text2 {
+		font-size: 20px;
+	}
+}
